@@ -1,0 +1,622 @@
+* {
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	text-decoration: none;
+	font-family: "Reddit Sans", sans-serif;
+	}
+	
+	
+	:root {
+	/*basic colors*/
+	--details: #20948B;
+	--main-BG: #4CB5F5;
+	--secondary-BG: #B7B8B6;
+	
+	/*background color*/
+	--dark-BG: #34675C;
+	--light-BG: #F1F1F2;
+	
+	/*font colors*/
+	--main-title: #063852;
+	--secondary-title: rgb(145, 145, 145);
+	
+	/*alternatives*/
+	--color1: #800020;
+	font-size: 14px;
+	}
+	
+/*------begin of template classes section------*/
+	
+	.flexCenter {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+	}
+	
+	.flexVerticalCenter {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+	
+	.lightHardStyle {
+		background-color: var(--light-BG);
+		color: var(--main-title);
+	}
+	
+	.lightSoftStyle {
+		color: var(--main-title);
+		background-color: white;
+	}
+	
+	.lightGlassStyle {
+		color: white;
+		background-color: rgba(255, 255, 255, 0.5);
+	}
+	
+	.darkGlassStyle {
+		color: white;
+		background-color: rgba(0, 0, 0, 0.8);
+	}
+	
+	.darkSoftStyle {
+		color: white;
+		background-color: var(--main-BG);
+	}
+	
+	.darkHardStyle {
+		color: white;
+		background-color: var(--main-title);
+	}
+	
+	.basicStyle {
+		color: white;
+		background-color: var(--details);
+	}
+	
+	.basicSoftStyle {
+		color: white;
+		background-color: var(--secondary-BG);
+	}
+	
+	.specialStyle {
+		color: white;
+		background: #43cea2;  /* fallback for old browsers */
+		background: -webkit-linear-gradient(to right, #185a9d, #43cea2);  /* Chrome 10-25, Safari 5.1-6 */
+		background: linear-gradient(to right, #185a9d, #43cea2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	}
+
+	.blurStyle {
+		color: white;
+		background: linear-gradient(var(--main-title), 50%, transparent);
+	}
+
+	.blurStyleReverse {
+		color: white;
+		background: linear-gradient(transparent, 30%, var(--main-title));
+	}
+	
+	/*------ shapes - begin ------*/
+		.circleShape, 
+		.chatShapeLeft, 
+		.chatShapeRight, 
+		.mainShapeRight,
+		.mainShapeLeft,
+		.buttonShapeLeft,
+		.buttonShapeRight,
+		.secondaryShapeRight,
+		.secondaryShapeLeft
+		{
+			overflow: hidden;
+		}
+	
+		.circleShape > img, 
+		.chatShapeLeft > img, 
+		.chatShapeRight > img, 
+		.mainShapeRight > img,
+		.mainShapeLeft > img,
+		.buttonShapeLeft > img,
+		.buttonShapeRight > img,
+		.secondaryShapeRight > img,
+		.secondaryShapeLeft {
+			height: 100%;
+		} 
+	
+		.circleShape {
+			border-radius: 50%;	
+		}
+	
+		.chatShapeRight {
+			border-radius: 50% 50% 0 50%;
+		}
+	
+		.chatShapeLeft {
+			border-radius: 50% 50% 50% 0;
+		}
+	
+		.buttonShapeLeft {
+			border-radius: 5rem 5rem 5rem 0;
+		}
+	
+		.buttonShapeRight {
+			border-radius: 5rem 5rem 0 5rem;
+		}
+
+		.mainShapeRight {
+			border-radius: 0 2.5rem;
+		}
+
+		.mainShapeLeft {
+			border-radius: 2.5rem 0;
+		}
+
+		.secondaryShapeRight {
+			border-radius: 2.5rem 2.5rem 2.5rem 0;
+		}
+
+		.secondaryShapeLeft {
+			border-radius: 2.5rem 0 2.5rem 2.5rem;
+		}
+	
+	/*------ shapes - end ------*/
+	
+/*------end of template classes section------*/
+	
+/*------template window - begin------*/
+	#fullScreenWindow {
+		position: fixed;
+		width: 100vw;
+		height: 100vh;
+		z-index: 101;
+		display: none;
+	}
+	
+			#windowCloseButton {
+				height: 5%; 
+				position: absolute; 
+				right: 5%; 
+				top: 5%;
+				cursor: pointer;
+			}
+/*------template window - end------*/
+	
+/*------left bar - begin ------*/
+	
+		#leftBar {
+			width: 50px;
+			height: 153px;
+			position: fixed;
+			right: 0;
+			bottom: calc(50vh - 71px);
+			align-items: flex-end;
+			z-index: 4;
+			cursor: pointer;
+		}
+	
+		.leftBarBox {
+			height: 33%;
+			min-width: 50px;
+			background-color: var(--main-title);
+			margin: 1px;
+		}
+	
+				.leftBarBox:hover {
+					background-color: var(--details);
+	
+				}
+	
+				.leftBarBox > img {
+					height: 45%;
+				}
+	
+				.flashingText {
+					width: 16.5rem;
+					display: none;
+					color: white;
+					font-size: 1.25rem;
+				}
+
+				.flashingText > h4 {
+					font-weight: 400;
+				}
+/*------left bar - end ------*/
+	
+/*------ top bar - begin ------*/
+	
+	#topBar {
+	width: 100%;
+	height: 5rem;
+	position: fixed;
+	z-index: 5;
+	padding: 0 2.5%;
+	color: white;
+	}
+		.title {
+			width: 10rem;
+			min-width: 10rem;
+			height: 3rem;
+			cursor: pointer;
+	
+		}
+				.title > img {
+					height: 95%;
+					margin-right: 0.5rem;
+				}
+	
+				.title > .flexVerticalCenter {
+					width: auto;			
+					text-align: left;
+				}
+	
+						.title > .flexVerticalCenter > h2 {
+							width: 100%;
+							font-weight: 600;
+							font-size: 0.5rem;
+	
+						}
+	
+						.title > .flexVerticalCenter > h1 {
+							width: 100%;
+							font-weight: 400;
+							font-size: 0.9rem;
+						}
+	
+		#topBar > ul {
+			width: 100%;
+			height: 100%;
+			font-size: 1rem;
+		}
+	
+				.topBarElements {
+					width: auto;
+					padding: 0 2.5%;
+					border-right: 1px solid white;
+					font-size: 1rem;
+					cursor: pointer;
+	
+				}
+	
+				#topBar > ul > .buttonShapeLeft {
+					height: 2.5rem; 
+					color: white;
+					background: var(--main-BG); 
+					border: 0; 
+					padding: 1%;
+				}
+	
+				#topBar > ul > .buttonShapeLeft:hover {
+					background: var(--main-title);
+				}
+	
+				/*#languageButtonBarTop {
+					
+				}*/
+	
+						#languageFlagBarTop {
+							height: 1rem;
+							width: 2rem;
+							margin-right: 10px;
+						}
+	
+						#languageLableBarTop {
+							font-weight: 400;
+							font-size: 1rem;
+						}
+/*------ top bar - end ------*/
+	
+/*------ home - begin ------*/
+	
+	header {
+	height: 100vh;
+	width: 100%;
+	/*background-image: linear-gradient(-225deg, #473B7B 0%, #3584A7 51%, #30D2BE 100%);*/
+	}
+	
+		#home {
+			height: 100%;
+			width: 100%;
+			background: linear-gradient(black, 30%, transparent);
+			z-index: 1;
+			color: white;
+			padding: 0 2.5%;
+		}
+	
+				#home > .flexVerticalCenter {
+					width: 95%;
+					position: absolute;
+					top: 20%;
+
+				}
+	
+						#home > .flexVerticalCenter > strong {
+							font-weight: 800;
+							font-size: 5rem;
+						}
+	
+				#home > .flexCenter {
+					width: 95%;
+					height: 10rem;
+					position: absolute;
+					bottom: 5%;
+				}
+
+						#home > .flexCenter > .mainShapeRight,
+						#home > .flexCenter > .mainShapeLeft,
+						#home > .flexCenter > .secondaryShapeRight {
+							height: 8rem;
+							width: 25%;
+							height: calc(100% - 2rem);
+							margin: 1rem 2.5%;
+							background-color: white;
+							cursor: pointer;
+						}
+
+								#home > .flexCenter > .mainShapeRight > img,
+								#home > .flexCenter > .mainShapeLeft > img,
+								#home > .flexCenter > .secondaryShapeRight > img {
+									margin-right: 1rem;
+									height: 60%;
+								}
+
+								#home > .flexCenter > .mainShapeRight > span,
+								#home > .flexCenter > .mainShapeLeft > span,
+								#home > .flexCenter > .secondaryShapeRight > span {
+									align-items: start;
+									font-size: 2rem;
+								} 
+	
+	
+				#homeBackGround {
+					height: inherit;
+					width: 100%;
+					overflow: hidden;
+					position: absolute;
+					top: 0;
+					z-index: -1;
+				}
+	
+						#homeBackGround > video {
+							height: 110%;
+						}
+/*------ home - end ------*/
+	
+/*------ basic section box - begin ------*/
+	
+		.outerContentBox {
+			width: 100%;
+			padding: 7.5rem 0;
+		}
+				.innerContentBox {
+					flex-wrap: wrap;
+					height: 90%;
+					width: 95%;
+				}
+	
+						.titleSection {
+							width: 100%;
+							text-align: center;
+							font-size: 4rem;
+							font-weight: 500;
+							margin-bottom: 5rem;
+						}
+
+						.titleContent {
+							width: 100%;
+							text-align: left;
+							font-size: 3rem;
+							font-weight: 500;
+							margin-bottom: 2rem;
+						}
+
+						.descriptionContent {
+							width: 100%;
+							text-align: left;
+							font-size: 1.25rem;
+							font-weight: 400;
+						}
+
+	
+						.tag {
+							position: absolute;
+							width: 17rem;
+							height: 5rem;
+							border-radius: 3rem;
+							font-size: 3rem;
+							font-weight: 600;
+						}
+	
+						.sectionFooter {
+							width: 100%;
+							font-size: 1.25rem;
+							margin-top: 2.5rem;
+						}
+/*------ basic section box - end ------*/
+	
+/*------ about us elements - begin ------*/
+		.splitBackGroundBox {
+			width: 50%;
+			height: 800px;
+			padding: 0 3.5%;
+		}
+	
+				.splitBackGroundBox > .mainShapeRight {
+					height: 25vw;
+					width: 30vw;
+					max-height: 531px;
+					max-width: 637px;
+					position: absolute;
+					right: 45%;
+				} 
+	
+				.splitBackGroundBox > .tag {
+							right: 60%;
+							z-index: 4;
+						}
+	
+				#quotes {
+					position: absolute;
+					left: 60%;
+					height: 20%;
+					z-index: 2;
+	
+				}
+	
+		.splitBackGroundBox > .constrastBoxHeading {
+			height: auto;
+		}
+	
+		.splitBackGroundBox > .constrastBoxHeading > .headingTitle, 
+		.splitBackGroundBox > .constrastBoxHeading > .headingDescription {
+			position: relative;
+			left: 5%;
+			width: 55%;
+		}
+/*------ about us elements - end ------*/
+	
+/*------ dates/prices box - begin ------*/
+	
+						.priceBox {    
+							height: 21.5rem;
+							width: 23rem;
+							margin: 0 3rem 3rem 3rem;
+							background-color: var(--details);
+							box-shadow: 1px 1px 7px black;
+						}
+	
+								.priceBoxContent {
+									height: 80%;
+									width: 70%;
+									color: white;
+									text-align: center;
+								}
+	
+										.priceLabel {
+											font-size: 1.5rem;
+											font-weight: 500;
+										}
+	
+										.dateContainer {
+											margin: 15% 0;
+											text-align: left;
+										}
+	
+												/*.dateBox {}*/
+	
+														.dateElemDay {
+															font-size: 3rem;
+															font-weight: 600;
+														}
+	
+														.dateElemMonth, .dateElemYear {
+															font-size: 1.4rem;
+															font-weight: 300;
+														}
+	
+												.rangeIcon {
+													font-size: 4rem;
+													margin: 0 6%;
+												}
+	
+										.enrolNowButton {
+											width: 100%;
+											height: 4rem;
+											background-color: rgba(255, 255, 255, 0.3);
+											font-size: 1.4rem;
+										}
+	
+												.enrolNowButton:hover {
+													color: var(--main-BG);
+													background-color: white;
+													cursor: pointer;
+												}
+	
+										#pricesLink:hover {
+											cursor: pointer;
+											color: var(--details);
+										}
+/*------ dates/prices box - end ------*/
+
+/*------ Why should you join this camp - begin ------*/
+	#carrousel {
+		height: calc(100vh - 4rem);
+		width: 100%;
+	}
+
+			#carrouselHeading {
+				width: 100%;
+				height: 20%;
+				position: relative;
+				bottom: 121%;
+				font-size: 4rem;
+			}
+
+			#carrousel > .blurStyleReverse {
+				width: 100%;
+				height: 30%;
+				position: relative;
+				bottom: 70%;
+				font-size: 1.75rem;
+			}
+
+			#carrouselScreen {
+				height: 120%;
+			}
+
+					#carrouselBackArrow, #carrouselNextArrow {
+						color: white; 
+						position: absolute; 
+						bottom: 140%;
+						font-size: 10rem;
+						cursor: pointer;
+					}
+/*------ Why should you join this camp - end ------*/
+	
+
+/*------ ilustration box - begin ------*/
+	.ilustrationBox {
+		width: 20%;
+		height: auto;
+		margin: 0 2.5% 2.5% 2.5%;
+	}
+	
+	.ilustrationBox > .circleShape, .ilustrationBox > .chatShapeRight, .ilustrationBox > .chatShapeLeft {
+		width: 16vw;
+		height: 16vw;
+	}
+	
+	.ilustrationBoxTitle, .ilustrationBoxDescription {
+		width: 100%;
+		font-weight: 300;
+		text-align: center;
+		font-size: 1.25rem;
+	}
+	
+	.ilustrationBoxTitle {
+		font-weight: 400;
+		font-size: 2.5rem;
+		margin: 1rem 0 2rem 0;
+	}
+	/*------ ilustration box - end ------*/
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
